@@ -74,4 +74,16 @@ public class CaneRESTEndpoint {
         controllerDiCreazioneERetrieval.creazioniDiProva();
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    /**
+     * Issue #1
+     *
+     * @param idCane
+     * @return
+     */
+    @RequestMapping(method = RequestMethod.GET, path = "delete/{idCane}")
+    public ResponseEntity<?> eliminaCane(@PathVariable(name = "idCane") Long idCane) {
+        controllerDiCreazioneERetrieval.eliminaCane(idCane);
+        return new ResponseEntity<Void>(HttpStatus.OK);
+    }
 }

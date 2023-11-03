@@ -63,6 +63,17 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
 
 
     }
+    /**
+     * Issue #1
+     * Oss.: gestione di EmptyResultDataAccessException se il record relativo non esiste
+     *
+     * @param idCane
+     */
+    @Override
+    public void eliminaCane(@NotNull Long idCane) {
+        caneDao.deleteById(idCane);
+    }
+
 
     public Cane creaCane(@NotNull Cane c) {
         return caneDao.save(c);

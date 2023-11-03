@@ -16,4 +16,10 @@ public interface IControllerDiCreazioneERetrieval {
     List<Cane> cercaCaniPerPadrone(Long idPadrone) throws Exception;
 
     void creazioniDiProva();
+
+    /**
+     * Issue #1
+     * @param idCane
+     */
+    void eliminaCane(Long idCane);
 }
