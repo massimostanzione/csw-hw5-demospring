@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Issue #2
@@ -34,6 +35,12 @@ public class PersonaRESTEndpoint {
     public ResponseEntity<Persona> readPersona(@PathVariable @NotNull Long idPersona) {
         Persona p = ctrl.readPersonaById(idPersona);
         return new ResponseEntity<>(p, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, path = "getAll")
+    public ResponseEntity<List<Persona>> readAllPersonas() {
+        List<Persona> l = ctrl.readAllPersonas();
+        return new ResponseEntity<List<Persona>>(l, HttpStatus.OK);
     }
 
 
