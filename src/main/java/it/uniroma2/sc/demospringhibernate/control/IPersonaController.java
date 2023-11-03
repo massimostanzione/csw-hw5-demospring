@@ -15,9 +15,6 @@ public interface IPersonaController  {
 
     List<Persona> readAllPersonas();
 
-
-    void creazioniDiProva();
-
     void deletePersona(Persona p);
 
     void deletePersonaById(@NotNull Long idPersona);

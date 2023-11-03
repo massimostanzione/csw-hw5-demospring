@@ -38,11 +38,6 @@ public class PersonaController implements IPersonaController {
     }
 
     @Override
-    public void creazioniDiProva() {
-        //TODO
-    }
-
-    @Override
     public void deletePersona(Persona p) {
         personaDao.delete(p);
     }
