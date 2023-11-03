@@ -5,6 +5,9 @@ import it.uniroma2.sc.demospringhibernate.entity.Persona;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * Issue #2
+ */
 public interface IPersonaController  {
     Persona createPersona(Persona p);
 

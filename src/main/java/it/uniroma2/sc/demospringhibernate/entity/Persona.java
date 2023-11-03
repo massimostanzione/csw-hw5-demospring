@@ -25,7 +25,7 @@ public class Persona {
     private List<TitoloDiStudio> titoliDiStudio;
 
     /**
-     * Oss.: è stato necessario attributo "cascade" per reazione a delete di Persona
+     * Oss.: Issue #2 - è stato necessario attributo "cascade" per reazione a delete di Persona
      */
     @OneToMany(mappedBy = "padrone", cascade = CascadeType.ALL)
     @JsonIgnore

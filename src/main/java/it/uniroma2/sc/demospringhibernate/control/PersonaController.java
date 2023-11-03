@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
+/**
+ * Issue #2
+ */
 @Service
 public class PersonaController implements IPersonaController {
     @Autowired
