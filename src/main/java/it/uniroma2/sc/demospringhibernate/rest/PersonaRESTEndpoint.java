@@ -21,7 +21,7 @@ public class PersonaRESTEndpoint {
     @RequestMapping(method = RequestMethod.POST, path = "")
     public ResponseEntity<Persona> createPersona(@RequestBody(required = true) @NotNull Persona p) {
         {
-            if (p != null) { // is this check necessary?
+            if (p != null) { // TODO - is this check necessary?
                 Persona newPersona = ctrl.createPersona(p);
                 ResponseEntity<Persona> response = new ResponseEntity<>(newPersona, HttpStatus.CREATED);
                 return response;
@@ -37,10 +37,11 @@ public class PersonaRESTEndpoint {
     }
 
 
-    public ResponseEntity<Persona> updatePersona() {
-        //TODO
-        return null;
-    }
+    /*
+     * "Update" CRUD function - link via REST POST handling (createPersona),
+     * assuming update is implemented via "save" from CrudRepository intf. (-> JPA)
+     */
+
 
     @RequestMapping(method = RequestMethod.GET, path = "delete/{idPersona}")
     public void deletePersonaById(@PathVariable @NotNull Long idPersona) {
