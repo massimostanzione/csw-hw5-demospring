@@ -1,5 +1,6 @@
 package it.uniroma2.sc.demospringhibernate.rest;
 
+import it.uniroma2.sc.demospringhibernate.bean.PersonaBean;
 import it.uniroma2.sc.demospringhibernate.control.IPersonaController;
 import it.uniroma2.sc.demospringhibernate.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,11 @@ public class PersonaRESTEndpoint {
     private IPersonaController ctrl;
 
     @RequestMapping(method = RequestMethod.POST, path = "")
-    public ResponseEntity<Persona> createPersona(@RequestBody(required = true) @NotNull Persona p) {
+    public ResponseEntity<PersonaBean> createPersona(@RequestBody(required = true) @NotNull PersonaBean p) {
         {
             if (p != null) { // TODO - is this check necessary?
-                Persona newPersona = ctrl.createPersona(p);
-                ResponseEntity<Persona> response = new ResponseEntity<>(newPersona, HttpStatus.CREATED);
+                PersonaBean newPersona = ctrl.createPersona(p);
+                ResponseEntity<PersonaBean> response = new ResponseEntity<>(newPersona, HttpStatus.CREATED);
                 return response;
             }
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -32,15 +33,15 @@ public class PersonaRESTEndpoint {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "{idPersona}")
-    public ResponseEntity<Persona> readPersona(@PathVariable @NotNull Long idPersona) {
-        Persona p = ctrl.readPersonaById(idPersona);
+    public ResponseEntity<PersonaBean> readPersona(@PathVariable @NotNull Long idPersona) {
+        PersonaBean p = ctrl.readPersonaById(idPersona);
         return new ResponseEntity<>(p, HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "getAll")
-    public ResponseEntity<List<Persona>> readAllPersonas() {
-        List<Persona> l = ctrl.readAllPersonas();
-        return new ResponseEntity<List<Persona>>(l, HttpStatus.OK);
+    public ResponseEntity<List<PersonaBean>> readAllPersonas() {
+        List<PersonaBean> l = ctrl.readAllPersonas();
+        return new ResponseEntity<List<PersonaBean>>(l, HttpStatus.OK);
     }
 
 
@@ -61,7 +62,7 @@ public class PersonaRESTEndpoint {
      * @param p
      */
     @RequestMapping(method = RequestMethod.PUT, path = "delete")
-    public void deletePersona(@RequestBody(required = true) @NotNull Persona p) {
+    public void deletePersona(@RequestBody(required = true) @NotNull PersonaBean p) {
         ctrl.deletePersona(p);
     }
 }

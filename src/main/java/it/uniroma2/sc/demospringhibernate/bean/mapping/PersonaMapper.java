@@ -11,6 +11,9 @@ import java.util.List;
  * A <i>naive</i> implementation of a entity/bean mapper for <code>Persona</code> class.
  */
 public class PersonaMapper {
+    //TODO i costruttori NON prevedono parametri per titoli di studio, altri cani ecc.
+    //... per questo non realizzati relativi mapper
+    // inoltre sfruttare ObjectMapper, v. Issue #4
     private IndirizzoMapper indirizzoMapper=new IndirizzoMapper();
     public Persona toEntity(PersonaBean b) {
         return new Persona(b.getNome(),b.getCognome(),indirizzoMapper.toEntity(b.getIndirizzo()));

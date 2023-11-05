@@ -1,6 +1,10 @@
 package it.uniroma2.sc.demospringhibernate.control;
 
+import it.uniroma2.sc.demospringhibernate.bean.PersonaBean;
+import it.uniroma2.sc.demospringhibernate.bean.mapping.CaneMapper;
+import it.uniroma2.sc.demospringhibernate.bean.mapping.PersonaMapper;
 import it.uniroma2.sc.demospringhibernate.dao.PersonaDao;
+import it.uniroma2.sc.demospringhibernate.entity.Cane;
 import it.uniroma2.sc.demospringhibernate.entity.Persona;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +20,11 @@ public class PersonaController implements IPersonaController {
     @Autowired
     private PersonaDao personaDao;
 
+    private PersonaMapper mapper=new PersonaMapper();
     @Override
-    public Persona createPersona(Persona p) {
-        return personaDao.save(p);
+    public PersonaBean createPersona(PersonaBean p) {
+        personaDao.save(this.mapper.toEntity(p));
+        return p; // it is already a bean
     }
 
     /**
@@ -28,18 +34,20 @@ public class PersonaController implements IPersonaController {
      * @return
      */
     @Override
-    public Persona readPersonaById(@NotNull Long idPersona) {
-        return personaDao.getOne(idPersona);
+    public PersonaBean readPersonaById(@NotNull Long idPersona) {
+        Persona retrievedPersona=personaDao.getOne(idPersona);
+        return this.mapper.toBean(retrievedPersona);
     }
 
     @Override
-    public List<Persona> readAllPersonas() {
-        return personaDao.findAll();
+    public List<PersonaBean> readAllPersonas() {
+        List<Persona> retrievedPersonaList = personaDao.findAll();
+        return this.mapper.toBeanList(retrievedPersonaList);
     }
 
     @Override
-    public void deletePersona(Persona p) {
-        personaDao.delete(p);
+    public void deletePersona(PersonaBean p) {
+        personaDao.delete(this.mapper.toEntity(p));
     }
 
     /**

@@ -1,5 +1,6 @@
 package it.uniroma2.sc.demospringhibernate.control;
 
+import it.uniroma2.sc.demospringhibernate.bean.PersonaBean;
 import it.uniroma2.sc.demospringhibernate.entity.Persona;
 
 import javax.validation.constraints.NotNull;
@@ -9,13 +10,13 @@ import java.util.List;
  * Issue #2
  */
 public interface IPersonaController  {
-    Persona createPersona(Persona p);
+    PersonaBean createPersona(PersonaBean p);
 
-    Persona readPersonaById(Long idPersona);
+    PersonaBean readPersonaById(Long idPersona);
 
-    List<Persona> readAllPersonas();
+    List<PersonaBean> readAllPersonas();
 
-    void deletePersona(Persona p);
+    void deletePersona(PersonaBean p);
 
     void deletePersonaById(@NotNull Long idPersona);
 }
