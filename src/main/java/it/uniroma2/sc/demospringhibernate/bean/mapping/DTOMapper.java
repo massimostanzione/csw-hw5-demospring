@@ -43,8 +43,7 @@ public class DTOMapper<ENTITY, BEAN extends Bean> {
     }
 
     public BEAN toBean(ENTITY e) {
-        ObjectMapper mapper = new ObjectMapper();
-        return (BEAN) mapper.convertValue(e, beanType.getClass());
+        return (BEAN) this.mapper.convertValue(e, beanType.getClass());
     }
 
     public List<BEAN> toBeanList(List<ENTITY> l) {
