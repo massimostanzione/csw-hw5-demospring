@@ -9,6 +9,10 @@ import java.util.List;
 
 /**
  * A <i>naive</i> implementation of a entity/bean mapper for <code>Cane</code> class.
+ *
+ * See <code>DTOMapper</code> and issue #4 for a more <i>generic</i> implementation.
+ *
+ * @see DTOMapper
  */
 public class CaneMapper {
     private PersonaMapper personaMapper=new PersonaMapper();

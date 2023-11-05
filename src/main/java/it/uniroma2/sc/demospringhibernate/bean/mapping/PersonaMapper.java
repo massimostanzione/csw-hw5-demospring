@@ -9,6 +9,10 @@ import java.util.List;
 
 /**
  * A <i>naive</i> implementation of a entity/bean mapper for <code>Persona</code> class.
+ *
+ * See <code>DTOMapper</code> and issue #4 for a more <i>generic</i> implementation.
+ *
+ * @see DTOMapper
  */
 public class PersonaMapper {
     //TODO i costruttori NON prevedono parametri per titoli di studio, altri cani ecc.

@@ -8,6 +8,7 @@ import it.uniroma2.sc.demospringhibernate.dao.DiplomaDao;
 import it.uniroma2.sc.demospringhibernate.dao.LaureaDao;
 import it.uniroma2.sc.demospringhibernate.dao.PersonaDao;
 import it.uniroma2.sc.demospringhibernate.entity.*;
+import org.aspectj.weaver.patterns.DeclareTypeErrorOrWarning;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +32,11 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
     private PersonaDao personaDao;
 
     private CaneMapper mapper=new CaneMapper();
+
+    /**
+     * FIXME, see issue #4
+     */
+    //private DTOMapper<Cane,CaneBean> mapper=new DTOMapper<>();
     @Transactional
     public void creazioniDiProva() {
         Indirizzo indirizzo = new Indirizzo("via e numero", "00100");
