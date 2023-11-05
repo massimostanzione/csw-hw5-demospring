@@ -1,5 +1,6 @@
 package it.uniroma2.sc.demospringhibernate.bean;
 
+import it.uniroma2.sc.demospringhibernate.bean.mapping.Bean;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  * only what we want it to see.
  */
 @Data //Let Lombok manage getters, setters, and so on...
-public class LaureaBean extends TitoloDiStudioBean{
+public class LaureaBean extends TitoloDiStudioBean implements Bean {
     private boolean cicloUnico;
 
     protected LaureaBean() {

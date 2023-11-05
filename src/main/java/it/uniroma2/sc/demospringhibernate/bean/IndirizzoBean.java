@@ -1,9 +1,7 @@
 package it.uniroma2.sc.demospringhibernate.bean;
 
-import it.uniroma2.sc.demospringhibernate.entity.Citta;
+import it.uniroma2.sc.demospringhibernate.bean.mapping.Bean;
 import lombok.Data;
-
-import javax.persistence.Embedded;
 
 /**
  * This is a bean for the entity <code>Indirizzo</code>.
@@ -11,7 +9,7 @@ import javax.persistence.Embedded;
  * only what we want it to see.
  */
 @Data //Let Lombok manage getters, setters, and so on...
-public class IndirizzoBean {
+public class IndirizzoBean  implements Bean {
     private Long id;
     private String viaENumero;
     private String cap;

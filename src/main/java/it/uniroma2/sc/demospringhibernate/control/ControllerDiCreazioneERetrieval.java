@@ -1,5 +1,8 @@
 package it.uniroma2.sc.demospringhibernate.control;
 
+import it.uniroma2.sc.demospringhibernate.bean.CaneBean;
+import it.uniroma2.sc.demospringhibernate.bean.mapping.CaneMapper;
+import it.uniroma2.sc.demospringhibernate.bean.mapping.DTOMapper;
 import it.uniroma2.sc.demospringhibernate.dao.CaneDao;
 import it.uniroma2.sc.demospringhibernate.dao.DiplomaDao;
 import it.uniroma2.sc.demospringhibernate.dao.LaureaDao;
@@ -27,6 +30,7 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
     @Autowired
     private PersonaDao personaDao;
 
+    private CaneMapper mapper=new CaneMapper();
     @Transactional
     public void creazioniDiProva() {
         Indirizzo indirizzo = new Indirizzo("via e numero", "00100");
@@ -75,16 +79,19 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
     }
 
 
-    public Cane creaCane(@NotNull Cane c) {
-        return caneDao.save(c);
+    public CaneBean creaCane(@NotNull CaneBean c) {
+        caneDao.save(this.mapper.toEntity(c));
+        return c; // it is already a bean
     }
 
-    public Cane leggiCanePerId(@NotNull Long idCane) {
-        return caneDao.getOne(idCane);
+    public CaneBean leggiCanePerId(@NotNull Long idCane) {
+      Cane  retrievedCane=caneDao.getOne(idCane);
+       return this.mapper.toBean(retrievedCane);
     }
 
-    public List<Cane> leggiCani() {
-        return caneDao.findAll();
+    public List<CaneBean> leggiCani() {
+        List<Cane> retrievedCaneList = caneDao.findAll();
+        return this.mapper.toBeanList(retrievedCaneList);
     }
 
     /**
@@ -92,15 +99,16 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
      * @param nome non deve essere null
      * @return
      */
-    public List<Cane> cercaCaniPerNome(@NotNull String nome) {
-        return caneDao.findByNome(nome);
+    public List<CaneBean> cercaCaniPerNome(@NotNull String nome) {
+        List<Cane> retrievedCaneList = caneDao.findByNome(nome);
+        return this.mapper.toBeanList(retrievedCaneList);
     }
 
-    public List<Cane> cercaCaniPerPadrone(@NotNull Long idPadrone) throws Exception {
-        Persona padrone = personaDao.getOne(idPadrone);
+    public List<CaneBean> cercaCaniPerPadrone(@NotNull Long idPadrone) throws Exception {
+        Persona padrone = personaDao.getOne(idPadrone); //TODO bean persona
         if(padrone==null) {
             throw new Exception("Nessun padrone presente con id " + idPadrone);
         }
-        return caneDao.findByPadrone(padrone);
+        return this.mapper.toBeanList(caneDao.findByPadrone(padrone));
     }
 }

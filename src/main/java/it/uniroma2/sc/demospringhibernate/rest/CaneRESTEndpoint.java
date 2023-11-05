@@ -1,5 +1,6 @@
 package it.uniroma2.sc.demospringhibernate.rest;
 
+import it.uniroma2.sc.demospringhibernate.bean.CaneBean;
 import it.uniroma2.sc.demospringhibernate.control.ControllerDiCreazioneERetrieval;
 import it.uniroma2.sc.demospringhibernate.control.IControllerDiCreazioneERetrieval;
 import it.uniroma2.sc.demospringhibernate.entity.Cane;
@@ -18,10 +19,10 @@ public class CaneRESTEndpoint {
     private IControllerDiCreazioneERetrieval controllerDiCreazioneERetrieval;
 
     @RequestMapping(method = RequestMethod.POST, path = "")
-    public ResponseEntity<?> creaCane(@RequestBody(required = true) Cane c) {
+    public ResponseEntity<?> creaCane(@RequestBody(required = true) CaneBean c) {
         if (c != null) {
-            Cane newCane = controllerDiCreazioneERetrieval.creaCane(c);
-            ResponseEntity<Cane> response = new ResponseEntity<>(newCane, HttpStatus.CREATED);
+            CaneBean newCane = controllerDiCreazioneERetrieval.creaCane(c);
+            ResponseEntity<CaneBean> response = new ResponseEntity<>(newCane, HttpStatus.CREATED);
             return response;
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -30,7 +31,7 @@ public class CaneRESTEndpoint {
     @RequestMapping(method = RequestMethod.GET, path = "{idCane}")
     public ResponseEntity<?> leggiCane(@PathVariable Long idCane) {
         if (idCane != null) {
-            Cane c = controllerDiCreazioneERetrieval.leggiCanePerId(idCane);
+            CaneBean c = controllerDiCreazioneERetrieval.leggiCanePerId(idCane);
             if (c == null) {
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
@@ -41,7 +42,7 @@ public class CaneRESTEndpoint {
 
     @RequestMapping(method = RequestMethod.GET, path = "")
     public ResponseEntity<?> leggiCani() {
-        List<Cane> tuttiICani = controllerDiCreazioneERetrieval.leggiCani();
+        List<CaneBean> tuttiICani = controllerDiCreazioneERetrieval.leggiCani();
         // mapping dto/entità e viceversa
         return new ResponseEntity<>(tuttiICani, HttpStatus.FOUND);
     }

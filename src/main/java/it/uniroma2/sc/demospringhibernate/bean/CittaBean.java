@@ -1,5 +1,6 @@
 package it.uniroma2.sc.demospringhibernate.bean;
 
+import it.uniroma2.sc.demospringhibernate.bean.mapping.Bean;
 import lombok.Data;
 
 /**
@@ -8,7 +9,7 @@ import lombok.Data;
  * only what we want it to see.
  */
 @Data //Let Lombok manage getters, setters, and so on...
-public class CittaBean {
+public class CittaBean  implements Bean {
     private String nome;
     private String codiceIstat;
     private String codiceCatastale;
