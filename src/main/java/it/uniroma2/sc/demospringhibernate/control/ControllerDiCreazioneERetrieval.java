@@ -37,6 +37,7 @@ public class ControllerDiCreazioneERetrieval implements IControllerDiCreazioneER
      * FIXME, see issue #4
      */
     //private DTOMapper<Cane,CaneBean> mapper=new DTOMapper<>();
+
     @Transactional
     public void creazioniDiProva() {
         Indirizzo indirizzo = new Indirizzo("via e numero", "00100");

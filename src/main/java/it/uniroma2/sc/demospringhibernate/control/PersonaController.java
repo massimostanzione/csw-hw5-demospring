@@ -25,7 +25,8 @@ public class PersonaController implements IPersonaController {
     /**
      * FIXME, see issue #4
      */
-    //private DTOMapper<Cane,CaneBean> mapper=new DTOMapper<>();
+    //private DTOMapper<Persona, PersonaBean> mapper=new DTOMapper<>();
+
     @Override
     public PersonaBean createPersona(PersonaBean p) {
         personaDao.save(this.mapper.toEntity(p));
